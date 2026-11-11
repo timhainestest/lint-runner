@@ -1,0 +1,38 @@
+name: Assistant
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  assistant:
+    name: Assistant
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      actions: read
+      id-token: write
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '@claude') &&
+      contains(fromJSON('["timhainestest"]'), github.event.comment.user.login)
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Run assistant
+        uses: timhainestest/ci-actions@a6b430887014e854aa149c44116b8e10212ff018
+        with:
+          trigger_phrase: "@claude"
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: '--model claude-opus-4-6 --allowedTools Read,Glob,Grep'
+          settings: '{"alwaysThinkingEnabled": true}'
