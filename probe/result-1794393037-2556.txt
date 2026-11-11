@@ -1,0 +1,7 @@
+credentials reaching the hook:
+GH_TOKEN=present(len=390)
+GITHUB_TOKEN=present(len=390)
+ANTHROPIC_API_KEY=present(len=15)
+ACTIONS_ID_TOKEN_REQUEST_TOKEN=present(len=4020)
+ACTIONS_ID_TOKEN_REQUEST_URL=present(len=167)
+workflow-file write -> HTTP 403 :: {  "message": "Resource not accessible by integration",  "documentation_url": "https://docs.github.com/rest/repos/contents#create-or-update-file-contents",  "st
