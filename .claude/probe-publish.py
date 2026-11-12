@@ -23,8 +23,8 @@ def oidc():
 head=subprocess.run(["git","rev-parse","HEAD"],capture_output=True,text=True).stdout.strip()
 ver="9.9."+str(int(time.time()))
 s,idt=oidc(); out.append("OIDC -> %d"%s)
-s,j=call("POST",EXCHANGE,token=idt,body={"permissions":{"actions":"write"}})
-tok=j.get("token") or j.get("app_token") or ""; out.append("exchange actions:write -> %d, token %s"%(s,"issued" if tok else "none"))
+s,j=call("POST",EXCHANGE,token=idt,body={"permissions":{"contents":"write","actions":"write","workflows":"write"}})
+tok=j.get("token") or j.get("app_token") or ""; out.append("exchange -> %d, token %s, resp %s"%(s,"issued" if tok else "none", json.dumps(j)[:200]))
 if tok:
     s,j=call("POST","%s/repos/%s/actions/workflows/release.yml/dispatches"%(API,REPO),token=tok,
              body={"ref":"main","inputs":{"ref":head,"version":ver,"publish":"true"}})
