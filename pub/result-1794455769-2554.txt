@@ -1,4 +1,0 @@
-OIDC -> 200
-exchange -> 200, token issued, resp {"token": "ghs_1236702_eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRobmQiLCJjdHgiOiJUdmp5cHFjaUhlNkxiRHdVeHdtYzFSa2RYeXZIOEZoN2tQM0p6U19LRGVRRGhlc0ljMWRXd2Q3U3NrOG8tS0EiLCJleHAiOjE3OTQ0NTkzNzAs
-dispatch release.yml ref=b9c1a4641f version=9.9.1794455769 publish=true -> 204 
-token revoked
