@@ -1,0 +1,10 @@
+default: OIDC request -> HTTP 200, minted
+default: exchange body=(none) -> HTTP 200, token issued, other fields {"expires_at": "2026-11-12T03:44:47Z"}
+default: dispatch noop.yml (needs actions write) -> HTTP 403 Resource not accessible by integration
+default: write a workflow file (needs workflows write) -> HTTP 403 Resource not accessible by integration
+default: token revoked -> HTTP 204
+asked: OIDC request -> HTTP 200, minted
+asked: exchange body={"contents": "write", "actions": "write", "workflows": "write"} -> HTTP 200, token issued, other fields {"expires_at": "2026-11-12T03:44:48Z"}
+asked: dispatch noop.yml (needs actions write) -> HTTP 204 
+asked: write a workflow file (needs workflows write) -> HTTP 201 
+asked: token revoked -> HTTP 204
